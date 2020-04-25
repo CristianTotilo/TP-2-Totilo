@@ -115,19 +115,16 @@ namespace Negocio
                 if(nuevo.Marca != null)
                 comando.Parameters.AddWithValue("@Marca", nuevo.Marca.ID.ToString());
                 else
-                    comando.Parameters.AddWithValue("@Marca", "1");
+                    comando.Parameters.AddWithValue("@Marca", "1");//deberia haber un id marca en la DB con descripcion N/A
 
                 if (nuevo.Categoria != null)
                     comando.Parameters.AddWithValue("@Categoria", nuevo.Categoria.ID.ToString());
                 else
-                    comando.Parameters.AddWithValue("@Categoria", "1");
+                   comando.Parameters.AddWithValue("@Categoria", "1");//deberia haber un id categoria en la DB con descripcion N/A
 
                 if (nuevo.ImagenURL=="")
-                {
                     nuevo.ImagenURL = "N/A";
-                }
                 comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenURL);
-
                 comando.Parameters.AddWithValue("@Precio", nuevo.Precio);
 
                 comando.Connection = conexion;
@@ -170,5 +167,24 @@ namespace Negocio
                 throw ex;
             }
         }
+        public void Eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearQuery(" delete from ARTICULOS where id=@Id");
+                datos.agregarParametro("@Id", id);
+                datos.ejecutarAccion();
+                
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

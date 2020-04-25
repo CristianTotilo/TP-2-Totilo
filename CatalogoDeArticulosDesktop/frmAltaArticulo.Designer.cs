@@ -85,6 +85,7 @@
             // 
             // cboMarca
             // 
+            this.cboMarca.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarca.FormattingEnabled = true;
             this.cboMarca.Location = new System.Drawing.Point(118, 118);
@@ -94,6 +95,7 @@
             // 
             // cboCategoria
             // 
+            this.cboCategoria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(118, 145);
@@ -224,7 +226,11 @@
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.lblCodigo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(327, 333);
+            this.MinimumSize = new System.Drawing.Size(327, 333);
             this.Name = "frmAltaArticulo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
             this.Text = "Agregar Articulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);

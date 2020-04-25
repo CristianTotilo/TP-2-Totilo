@@ -114,7 +114,6 @@ namespace CatalogoDeArticulosDesktop
                     articulo.Marca = (Marca)cboMarca.SelectedItem;
                     articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
                     articulo.ImagenURL = txtImagenUrl.Text.Trim();
-
                     if (txtPrecio.TextLength.Equals(0))
                             articulo.Precio = 0;
                     else

@@ -64,6 +64,10 @@ namespace CatalogoDeArticulosDesktop
             {
                 MessageBox.Show("No se pudo establecer una conexion segura con la URL de la imagen del articulo. \n\n Ayuda  \n->Intente con una URL diferente a la actual.");
             }
+            catch(System.ArgumentException)
+            {
+                MessageBox.Show("No se pudo visualizar la imagen del Articulo debido a un error de sintaxis en la URL asignada.");
+            }
 
             catch (Exception ex)
             {
@@ -89,6 +93,24 @@ namespace CatalogoDeArticulosDesktop
             modificar = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
             frmAltaArticulo frmmodificar = new frmAltaArticulo(modificar);
             frmmodificar.ShowDialog();
+            cargarTabla();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+            CatalogoNegocio Negocio = new CatalogoNegocio();
+            try
+            {
+                int Id = ((Articulo)dgvArticulo.CurrentRow.DataBoundItem).ID;
+                Negocio.Eliminar(Id);
+                cargarTabla();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
