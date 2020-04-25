@@ -81,10 +81,11 @@
             this.txtCodigo.Location = new System.Drawing.Point(118, 40);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(168, 20);
-            this.txtCodigo.TabIndex = 3;
+            this.txtCodigo.TabIndex = 1;
             // 
             // cboMarca
             // 
+            this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarca.FormattingEnabled = true;
             this.cboMarca.Location = new System.Drawing.Point(118, 118);
             this.cboMarca.Name = "cboMarca";
@@ -93,6 +94,7 @@
             // 
             // cboCategoria
             // 
+            this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(118, 145);
             this.cboCategoria.Name = "cboCategoria";
@@ -126,14 +128,14 @@
             this.txtNombre.Location = new System.Drawing.Point(118, 66);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(168, 20);
-            this.txtNombre.TabIndex = 8;
+            this.txtNombre.TabIndex = 2;
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(118, 92);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(168, 20);
-            this.txtDescripcion.TabIndex = 9;
+            this.txtDescripcion.TabIndex = 3;
             // 
             // lblNombre
             // 
@@ -159,14 +161,14 @@
             this.txtImagenUrl.Location = new System.Drawing.Point(118, 172);
             this.txtImagenUrl.Name = "txtImagenUrl";
             this.txtImagenUrl.Size = new System.Drawing.Size(168, 20);
-            this.txtImagenUrl.TabIndex = 12;
+            this.txtImagenUrl.TabIndex = 6;
             // 
             // txtPrecio
             // 
             this.txtPrecio.Location = new System.Drawing.Point(118, 198);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(168, 20);
-            this.txtPrecio.TabIndex = 13;
+            this.txtPrecio.TabIndex = 7;
             this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // lblImagenUrl
@@ -224,7 +226,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAltaArticulo";
             this.Tag = "";
-            this.Text = "Alta de articulos";
+            this.Text = "Agregar Articulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

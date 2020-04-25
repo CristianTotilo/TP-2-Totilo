@@ -82,6 +82,13 @@ namespace CatalogoDeArticulosDesktop
             cargarTabla();
         }
 
-        
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo modificar;
+
+            modificar = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+            frmAltaArticulo frmmodificar = new frmAltaArticulo(modificar);
+            frmmodificar.ShowDialog();
+        }
     }
 }

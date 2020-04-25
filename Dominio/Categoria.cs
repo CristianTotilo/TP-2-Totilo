@@ -10,12 +10,17 @@ namespace Dominio
     {
         public int ID { get; set; }
         public string Descripcion { get; set; }
-
-        public override string ToString()
+        public Categoria() { }
+        public Categoria(int Id, string Desc)
         {
-            
-            return Descripcion.ToString();
+            ID = Id;
+            Descripcion = Desc;
         }
+        public override string ToString()
+         {
+
+             return Descripcion.ToString();
+         }
     }
 }
          

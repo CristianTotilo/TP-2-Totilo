@@ -38,63 +38,39 @@ namespace Negocio
                     Articulo.ID = lector.GetInt32(0);
 
                     if (!DBNull.Value.Equals(lector["Codigo"])) //Tuve que hacer esta validacion porque la de !convert.IsDBNull no funciono
-                    {
                         Articulo.Codigo = lector.GetString(1);
-                    }
                     else
-                    {
                         Articulo.Codigo = "N/A";
-                    }
+
                     if (!DBNull.Value.Equals(lector["Nombre"]))
-                    {
-                        Articulo.Nombre = lector.GetString(2);
-                        //aux.Nombre = (string)lector["Nombre"]; alternativa
-                    }
+                        Articulo.Nombre = lector.GetString(2);//aux.Nombre = (string)lector["Nombre"]; alternativa
                     else
-                    {
                         Articulo.Nombre = "N/A";
-                    }
+
                     if (!DBNull.Value.Equals(lector["Descripcion"]))
-                    {
                         Articulo.Descripcion = lector.GetString(3);
-                    }
                     else
-                    {
                         Articulo.Descripcion = "N/A";
-                    }
+
                     if (!DBNull.Value.Equals(lector["Marca"]))
-                    {
-                        Articulo.Marca.Descripcion = lector.GetString(4); 
-                        //lector["Descripcion"].ToString(); alternativa 
-                    }
+                        Articulo.Marca.Descripcion = lector.GetString(4); //lector["Descripcion"].ToString(); alternativa 
                     else
-                    {
                         Articulo.Marca.Descripcion = "N/A";
-                    }
+
                     if (!DBNull.Value.Equals(lector["Categoria"]))
-                    {
                         Articulo.Categoria.Descripcion = lector.GetString(5);
-                    }
                     else
-                    {
                         Articulo.Categoria.Descripcion = "N/A";
-                    }
+
                     if (!DBNull.Value.Equals(lector["ImagenUrl"]))
-                    {
                         Articulo.ImagenURL = lector.GetString(6);
-                    }
                     else
-                    {
                         Articulo.ImagenURL = "N/A";
-                    }
+
                     if (!DBNull.Value.Equals(lector["Precio"]))
-                    {
                         Articulo.Precio = (decimal)lector.GetDecimal(7);
-                    }
                     else
-                    {
                         Articulo.Precio = 0;
-                    }
                        
                     Listado.Add(Articulo);
 
@@ -125,25 +101,26 @@ namespace Negocio
                 comando.CommandText = "insert into ARTICULOS (Codigo, Nombre, Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio) Values (@Codigo,@Nombre,@Descripcion,@Marca,@Categoria,@ImagenUrl,@Precio)";
                 // comando.Parameters.Clear();
                 if (nuevo.Codigo == "" )
-                {
                     nuevo.Codigo = "N/A";
-                }
                 comando.Parameters.AddWithValue("@Codigo", nuevo.Codigo);
 
                 if (nuevo.Nombre == "")
-                {
                     nuevo.Nombre = "N/A";
-                }
                 comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
 
                 if (nuevo.Descripcion == "")
-                {
                     nuevo.Descripcion = "N/A";
-                }
                 comando.Parameters.AddWithValue("@Descripcion", nuevo.Descripcion);
 
+                if(nuevo.Marca != null)
                 comando.Parameters.AddWithValue("@Marca", nuevo.Marca.ID.ToString());
-                comando.Parameters.AddWithValue("@Categoria", nuevo.Categoria.ID.ToString());
+                else
+                    comando.Parameters.AddWithValue("@Marca", "1");
+
+                if (nuevo.Categoria != null)
+                    comando.Parameters.AddWithValue("@Categoria", nuevo.Categoria.ID.ToString());
+                else
+                    comando.Parameters.AddWithValue("@Categoria", "1");
 
                 if (nuevo.ImagenURL=="")
                 {
@@ -166,6 +143,31 @@ namespace Negocio
             finally
             {
                 conexion.Close();
+            }
+        }
+
+        public void modificar(Articulo articulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearQuery("update ARTICULOS set Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion ,IdMarca = @Marca,IdCategoria = @Categoria,ImagenUrl = @ImagenUrl,Precio= @Precio where Id = @Id");
+                datos.agregarParametro("@Id",articulo.ID);
+                datos.agregarParametro("@Codigo",articulo.Codigo);
+                datos.agregarParametro("@Nombre",articulo.Nombre);
+                datos.agregarParametro("@Descripcion",articulo.Descripcion);
+                datos.agregarParametro("@Marca",articulo.Marca.ID.ToString());
+                datos.agregarParametro("@Categoria",articulo.Categoria.ID.ToString());
+                datos.agregarParametro("@ImagenUrl",articulo.ImagenURL);
+                datos.agregarParametro("@Precio",articulo.Precio.ToString());
+                datos.ejecutarAccion(); 
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }
