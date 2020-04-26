@@ -14,26 +14,28 @@ namespace CatalogoDeArticulosDesktop
 {
     public partial class Catalogo : Form
     {
+        private List<Articulo> lista;
         public Catalogo()
         {
             InitializeComponent();
+           
         }
 
         private void Catalogo_Load(object sender, EventArgs e)
         {
-            cargarTabla();
-
+            cargarDatos();
         }
 
-        private void cargarTabla()
+        private void cargarDatos()
         {
+            CatalogoNegocio Negocio = new CatalogoNegocio();
+            lista = Negocio.listar();
             try
             {
-                CatalogoNegocio Negocio = new CatalogoNegocio();
-                dgvArticulo.DataSource = Negocio.listar();
+                dgvArticulo.DataSource = lista;
                 dgvArticulo.Columns[0].Visible = false;
                 dgvArticulo.Columns[6].Visible = false;
-               
+   
             }
             catch (Exception ex)
             {
@@ -48,7 +50,7 @@ namespace CatalogoDeArticulosDesktop
             {
                 Articulo art;
                 art = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                picArt.Load(art.ImagenURL);
+                picArt.ImageLocation = art.ImagenURL;
             }
             catch (System.IO.DirectoryNotFoundException)
             {
@@ -83,7 +85,7 @@ namespace CatalogoDeArticulosDesktop
         {
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
-            cargarTabla();
+            cargarDatos();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -93,7 +95,7 @@ namespace CatalogoDeArticulosDesktop
             modificar = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
             frmAltaArticulo frmmodificar = new frmAltaArticulo(modificar);
             frmmodificar.ShowDialog();
-            cargarTabla();
+            cargarDatos();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -102,9 +104,13 @@ namespace CatalogoDeArticulosDesktop
             CatalogoNegocio Negocio = new CatalogoNegocio();
             try
             {
-                int Id = ((Articulo)dgvArticulo.CurrentRow.DataBoundItem).ID;
-                Negocio.Eliminar(Id);
-                cargarTabla();
+                DialogResult val = MessageBox.Show("Esta seguro que desea eliminar el Articulo seleccionado?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (val == DialogResult.Yes)
+                {
+                    int Id = ((Articulo)dgvArticulo.CurrentRow.DataBoundItem).ID;
+                    Negocio.Eliminar(Id);
+                    cargarDatos();
+                }
             }
             catch (Exception ex)
             {
@@ -112,5 +118,30 @@ namespace CatalogoDeArticulosDesktop
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            try
+            {
+                if (txtBusqueda.Text == "")
+                {
+                    listaFiltrada = lista;
+                }
+                else
+                {
+                    listaFiltrada = lista.FindAll(slot => slot.Codigo.ToLower().Contains(txtBusqueda.Text.ToLower())|| slot.Nombre.ToLower().Contains(txtBusqueda.Text.ToLower())|| slot.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()) || slot.Marca.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()) || slot.Categoria.Descripcion.ToLower().Contains(txtBusqueda.Text.ToLower()) || slot.Precio.ToString().ToLower().Contains(txtBusqueda.Text.ToLower()));
+                   
+                }
+                    dgvArticulo.DataSource = listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+   
     }
 }
