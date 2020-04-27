@@ -100,7 +100,7 @@ namespace CatalogoDeArticulosDesktop
             try
             {
 
-                DialogResult val = MessageBox.Show("Esta seguro que desea continuar?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                DialogResult val = MessageBox.Show("Esta seguro que desea continuar?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (val == DialogResult.Yes)
                 {

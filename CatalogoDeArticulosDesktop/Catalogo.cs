@@ -142,6 +142,13 @@ namespace CatalogoDeArticulosDesktop
             }
         }
 
-   
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            Articulo ArticuloDetalle;
+
+            ArticuloDetalle = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+            Detalle frmdetalle = new Detalle(ArticuloDetalle);
+            frmdetalle.ShowDialog();
+        }
     }
 }

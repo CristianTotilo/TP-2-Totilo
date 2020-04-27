@@ -30,3 +30,4 @@ C:\Users\User\source\repos\TP2_Totilo\CatalogoDeArticulosDesktop\obj\Debug\Catal
 C:\Users\User\source\repos\TP2_Totilo\CatalogoDeArticulosDesktop\obj\Debug\CatalogoDeArticulosDesktop.csproj.CopyComplete
 C:\Users\User\source\repos\TP2_Totilo\CatalogoDeArticulosDesktop\obj\Debug\CatalogoDeArticulosDesktop.exe
 C:\Users\User\source\repos\TP2_Totilo\CatalogoDeArticulosDesktop\obj\Debug\CatalogoDeArticulosDesktop.pdb
+C:\Users\User\source\repos\TP2_Totilo\CatalogoDeArticulosDesktop\obj\Debug\CatalogoDeArticulosDesktop.Detalle.resources
