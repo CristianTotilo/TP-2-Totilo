@@ -22,7 +22,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "data source=User-PC\\SQLEXPRESS; initial catalog=CATALOGO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select A.Id,A.Codigo,A.Nombre,A.Descripcion,M.Descripcion[Marca],C.Descripcion[Categoria],A.ImagenUrl,A.Precio from ARTICULOS as A left join CATEGORIAS as C on A.IdCategoria = C.Id inner join MARCAS as M on A.IdMarca = M.Id";
+                comando.CommandText = "select A.Id,A.Codigo,A.Nombre,A.Descripcion,M.Descripcion[Marca],C.Descripcion[Categoria],A.ImagenUrl,A.Precio from ARTICULOS as A left join CATEGORIAS as C on A.IdCategoria = C.Id left join MARCAS as M on A.IdMarca = M.Id";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
